@@ -1,0 +1,7 @@
+Cache Implementation
+	- Time based cache -> Eviction will be based on time
+	- Write your Cache Interface.
+	- Functionality can be extended in future.
+	- Expiration will be associated with each object.
+	- If object accessed then expiration time will be reset.
+	- Use proper test cases using JUnit.

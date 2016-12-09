@@ -1,0 +1,25 @@
+ArrayList
+Database indexes are generally maintained using Arrays. //ArrayList
+
+LinkedList
+Storing large files will be maintained using LinkedList where the large chunk of data is not contiguous. They are separated (fragmented) 
+and then we will be using LinkedList.
+
+LinkedHash version of Map/Set
+It comes with extra cost as it is internally making Linked list for maintaining insertion order of all the elements.
+
+
+
+
+
+
+
+I.Q.1 - How the hashCode() int value is mapped to the bucket address in case of HashMap.
+I.Q.2 - Custom Object in Set and we have correctly overridden the equals method but not hashCode method. Will it allow duplicates or not.
+I.Q.3 - What is difference between sorting and ordering.
+I.Q.4 - Collection c = (Collection) new HashMap<K,V>(); {Working, no compile time error} 
+I.Q.5 - Why Collections.sort() method is to sort the element. Why it only accepts list as an argument. 
+		// Answer The other data structures are not designed for this purpose. You have a list where the elements are stored as per the indexes
+		for other data structures all the elements are already stored and we have sorted implementations for them. But there is no such thing for
+		list. So sort method takes a list.
+I.Q.6 - .75 is the default load factor - https://en.wikipedia.org/wiki/Poisson_distribution theory is behind this mechanism.
