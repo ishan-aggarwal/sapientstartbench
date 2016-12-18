@@ -1,0 +1,111 @@
+Microsoft Windows [Version 6.1.7601]
+Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
+
+C:\Program Files\Java\jdk1.8.0_74\bin>
+C:\Program Files\Java\jdk1.8.0_74\bin>jstack 57232
+2016-12-16 20:00:05
+Full thread dump Java HotSpot(TM) 64-Bit Server VM (25.74-b02 mixed mode):
+
+"DestroyJavaVM" #13 prio=5 os_prio=0 tid=0x00000000023bd800 nid=0xf630 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Thread-2" #12 prio=5 os_prio=0 tid=0x000000001d91b000 nid=0xe044 waiting for monitor entry [0x000000001e23f000]
+   java.lang.Thread.State: BLOCKED (on object monitor)
+        at deadlock.MyThread.run(MyThread.java:28)
+        - waiting to lock <0x000000076dbeaa80> (a java.lang.Object)
+        - locked <0x000000076dbeaaa0> (a java.lang.Object)
+
+"Thread-1" #11 prio=5 os_prio=0 tid=0x000000001d918800 nid=0xedd4 waiting for monitor entry [0x000000001d47f000]
+   java.lang.Thread.State: BLOCKED (on object monitor)
+        at deadlock.MyThread.run(MyThread.java:28)
+        - waiting to lock <0x000000076dbeaaa0> (a java.lang.Object)
+        - locked <0x000000076dbeaa90> (a java.lang.Object)
+
+"Thread-0" #10 prio=5 os_prio=0 tid=0x000000001d917800 nid=0xcfb4 waiting for monitor entry [0x000000001e09f000]
+   java.lang.Thread.State: BLOCKED (on object monitor)
+        at deadlock.MyThread.run(MyThread.java:28)
+        - waiting to lock <0x000000076dbeaa90> (a java.lang.Object)
+        - locked <0x000000076dbeaa80> (a java.lang.Object)
+
+"Service Thread" #9 daemon prio=9 os_prio=0 tid=0x000000001d8f9800 nid=0xf344 runnable [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"C1 CompilerThread2" #8 daemon prio=9 os_prio=2 tid=0x000000001bcee000 nid=0xf618 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"C2 CompilerThread1" #7 daemon prio=9 os_prio=2 tid=0x000000001bcec000 nid=0xe888 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"C2 CompilerThread0" #6 daemon prio=9 os_prio=2 tid=0x000000001bce7000 nid=0xcd88 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Attach Listener" #5 daemon prio=5 os_prio=2 tid=0x000000001bce4800 nid=0xcf50 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Signal Dispatcher" #4 daemon prio=9 os_prio=2 tid=0x000000001bce1000 nid=0x2008 runnable [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Finalizer" #3 daemon prio=8 os_prio=1 tid=0x000000001bcca000 nid=0x1890 in Object.wait() [0x000000001d08f000]
+   java.lang.Thread.State: WAITING (on object monitor)
+        at java.lang.Object.wait(Native Method)
+        - waiting on <0x000000076db88ee0> (a java.lang.ref.ReferenceQueue$Lock)
+        at java.lang.ref.ReferenceQueue.remove(Unknown Source)
+        - locked <0x000000076db88ee0> (a java.lang.ref.ReferenceQueue$Lock)
+        at java.lang.ref.ReferenceQueue.remove(Unknown Source)
+        at java.lang.ref.Finalizer$FinalizerThread.run(Unknown Source)
+
+"Reference Handler" #2 daemon prio=10 os_prio=2 tid=0x000000001bc83000 nid=0xe1f4 in Object.wait() [0x000000001ceef000]
+   java.lang.Thread.State: WAITING (on object monitor)
+        at java.lang.Object.wait(Native Method)
+        - waiting on <0x000000076db86b50> (a java.lang.ref.Reference$Lock)
+        at java.lang.Object.wait(Unknown Source)
+        at java.lang.ref.Reference.tryHandlePending(Unknown Source)
+        - locked <0x000000076db86b50> (a java.lang.ref.Reference$Lock)
+        at java.lang.ref.Reference$ReferenceHandler.run(Unknown Source)
+
+"VM Thread" os_prio=2 tid=0x000000001bc7b800 nid=0x7820 runnable
+
+"GC task thread#0 (ParallelGC)" os_prio=0 tid=0x00000000022fc000 nid=0xf33c runnable
+
+"GC task thread#1 (ParallelGC)" os_prio=0 tid=0x00000000022fd800 nid=0xf384 runnable
+
+"GC task thread#2 (ParallelGC)" os_prio=0 tid=0x00000000022ff000 nid=0xdb50 runnable
+
+"GC task thread#3 (ParallelGC)" os_prio=0 tid=0x0000000002302800 nid=0xd354 runnable
+
+"VM Periodic Task Thread" os_prio=2 tid=0x000000001d904000 nid=0xe658 waiting on condition
+
+JNI global references: 5
+
+
+Found one Java-level deadlock:
+=============================
+"Thread-2":
+  waiting to lock monitor 0x000000001d921658 (object 0x000000076dbeaa80, a java.lang.Object),
+  which is held by "Thread-0"
+"Thread-0":
+  waiting to lock monitor 0x000000001bc899c8 (object 0x000000076dbeaa90, a java.lang.Object),
+  which is held by "Thread-1"
+"Thread-1":
+  waiting to lock monitor 0x000000001bc86f28 (object 0x000000076dbeaaa0, a java.lang.Object),
+  which is held by "Thread-2"
+
+Java stack information for the threads listed above:
+===================================================
+"Thread-2":
+        at deadlock.MyThread.run(MyThread.java:28)
+        - waiting to lock <0x000000076dbeaa80> (a java.lang.Object)
+        - locked <0x000000076dbeaaa0> (a java.lang.Object)
+"Thread-0":
+        at deadlock.MyThread.run(MyThread.java:28)
+        - waiting to lock <0x000000076dbeaa90> (a java.lang.Object)
+        - locked <0x000000076dbeaa80> (a java.lang.Object)
+"Thread-1":
+        at deadlock.MyThread.run(MyThread.java:28)
+        - waiting to lock <0x000000076dbeaaa0> (a java.lang.Object)
+        - locked <0x000000076dbeaa90> (a java.lang.Object)
+
+Found 1 deadlock.
+
+
+C:\Program Files\Java\jdk1.8.0_74\bin>
